@@ -23,5 +23,4 @@ export const deleteShow = async (scheduleId, showId) => {
     if (!response.ok) {
         throw new Error('Could not delete show')
     }
-    return await response.json()
 }
