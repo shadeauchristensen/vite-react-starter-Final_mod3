@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ScheduleList from './components/ScheduleList'
 import ScheduleDetail from './components/ScheduleDetail'
+import './App.css'
 
 function App() {
   return (

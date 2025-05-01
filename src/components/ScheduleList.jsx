@@ -13,7 +13,8 @@ export default function ScheduleList() {
 
     return (
         <div>
-            <h1>Shadow Music Fest</h1>
+            <img src="/image.png" alt="Shadow Metal Fest Logo" className="logo" />
+            {/* <h1>Shadow Music Fest</h1> */}
             <ul>
                 {schedules.map(schedule => (
                     <li key={schedule.id}> 
