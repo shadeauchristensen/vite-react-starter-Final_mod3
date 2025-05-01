@@ -11,7 +11,7 @@ export default function ScheduleDetail() {
     const [newShow, setNewShow] = useState({
         artist: '',
         location: '',
-        date: schedule?.attributes.date || '',
+        date: '',
         time: ''
     })
 
@@ -54,7 +54,13 @@ export default function ScheduleDetail() {
 
     useEffect(() => {
         fetchScheduleId(id)
-        .then(data => setSchedule(data.data))
+        .then(data => {
+            setSchedule(data.data)
+            setNewShow(prev => ({
+                ...prev,
+                date: data.data.attributes.date
+            }))
+        })
         .catch(error => console.error('Error loading schedule:', error))
     }, [id])
 
@@ -83,7 +89,7 @@ export default function ScheduleDetail() {
                         <li key={show.id}>
                             <p><strong>Band Name:</strong> {show.artist}</p>
                             <p><strong>Stage Name:</strong> {show.location}</p>
-                            <p><strong>Time Set Starts:</strong> {show.time.slice(11, 16)}</p>
+                            <p><strong>Time Set Starts:</strong> {show.time ? show.time.slice(11, 16) : 'TBD'}</p>
                             <button onClick={() => handleDelete(show.id)}>🗑️ Remove</button>
                         </li>
                     ))}
@@ -124,8 +130,9 @@ export default function ScheduleDetail() {
                     <li key={user.id}>{user.first_name} {user.last_name} - {user.email}</li>
                 ))}
                 </ul>
-
                 <button onClick={() => navigate('/')}> ← Back to All Schedules </button>
+
+                
         </div>
     )
 }
