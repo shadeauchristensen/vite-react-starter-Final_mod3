@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { fetchScheduleId, createShow, deleteShow } from "../services/api"
+import { useNavigate } from 'react-router-dom'
 
 export default function ScheduleDetail() {
+    const navigate = useNavigate();
     const { id } = useParams()
     const [schedule, setSchedule] = useState(null)
     const [searchBand, setSearchBand] = useState('')
@@ -122,6 +124,8 @@ export default function ScheduleDetail() {
                     <li key={user.id}>{user.first_name} {user.last_name} - {user.email}</li>
                 ))}
                 </ul>
+
+                <button onClick={() => navigate('/')}> ← Back to All Schedules </button>
         </div>
     )
 }
